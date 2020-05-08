@@ -5,7 +5,12 @@ require('express-async-errors');
 require('dotenv').config();
 
 const mongoose = require('mongoose');
-mongoose.connect(process.env.DB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.DB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).catch(error => {
+  console.log(error);
+});
 
 const app = express();
 app.use(morgan('dev'));
@@ -34,6 +39,7 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 4040;
+const HOST = process.env.host || 'http://localhost';
 app.listen(PORT, _ => {
-  console.log(`IAM service is on air at http://localhost:${PORT}/`);
+  console.log(`IAM service is on air at ${HOST}:${PORT}/`);
 });
