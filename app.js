@@ -12,6 +12,14 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.status(200).json({msg: "Hello!"});
+});
+
+app.get('/api/', (req, res) => {
+  res.status(200).json({msg: "end point at /auth and /users"});
+});
+
 app.use('/api/auth', require('./routes/auth.route'));
 app.use('/api/users', require('./routes/user.route'));
 
