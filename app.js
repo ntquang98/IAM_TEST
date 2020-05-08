@@ -33,7 +33,7 @@ app.use((err, req, res, next) => {
   res.status(statusCode).send('View Error log on console');
 });
 
-const PORT = 4040;
+const PORT = process.env.PORT || 4040;
 app.listen(PORT, _ => {
   console.log(`IAM service is on air at http://localhost:${PORT}/`);
 });
